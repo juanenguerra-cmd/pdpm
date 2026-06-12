@@ -2,35 +2,27 @@
 
 A modular React/Vite PDPM LTC Tracker prepared for GitHub, Cloudflare Workers, and Cloudflare D1 persistence.
 
+## Cloudflare build fix
+
+For this repository, the app is at the repository root. In Cloudflare, set:
+
+```text
+Root directory: leave blank
+Framework preset: Vite
+Build command: npm run build
+Output directory: dist
+```
+
+Do not set the root directory to `pdpm`, `/pdpm`, `pdpm-react-modular`, `src`, or `dist`.
+
 ## What is included
 
 - React/Vite frontend
 - Cloudflare Worker API
 - Cloudflare D1 database migration
 - Wrangler configuration
-- GitHub Actions deployment workflow
 - Local fallback storage when D1 is unavailable
 - Import/export JSON support
-
-## Project structure
-
-```text
-pdpm-react-modular/
-├─ .github/workflows/deploy-cloudflare.yml
-├─ migrations/0001_schema.sql
-├─ worker/index.ts
-├─ wrangler.toml
-├─ package.json
-├─ index.html
-└─ src/
-   ├─ App.jsx
-   ├─ main.jsx
-   ├─ components/
-   ├─ data/
-   ├─ hooks/
-   ├─ services/
-   └─ utils/
-```
 
 ## Local React-only development
 
@@ -80,15 +72,6 @@ Deploy:
 ```bash
 npm run cf:deploy
 ```
-
-## GitHub deployment
-
-1. Push this folder to a GitHub repository.
-2. In GitHub repository settings, add these secrets:
-   - `CLOUDFLARE_API_TOKEN`
-   - `CLOUDFLARE_ACCOUNT_ID`
-3. Confirm `wrangler.toml` has the correct D1 `database_id`.
-4. Push to `main` or run the workflow manually.
 
 ## API routes
 
