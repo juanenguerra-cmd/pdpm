@@ -89,6 +89,7 @@ export function calcRates(pdpm, row) {
 
 export function createDefaultRow(pdpm, geo = "urban") {
   return {
+    id: crypto.randomUUID(),
     name: "",
     mrn: "",
     admit: todayISO(),

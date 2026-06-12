@@ -6,9 +6,9 @@ import { SummaryPanel } from "./components/SummaryPanel";
 import { LookupsPanel } from "./components/LookupsPanel";
 import { ConfigPanel } from "./components/ConfigPanel";
 import { NTAModal } from "./components/NTAModal";
-import { PDPM, DEFAULT_NON_CM, RATE_OVERRIDE_KEY, STORAGE_KEY } from "./data/pdpmData";
-import { createDefaultRow, todayISO } from "./utils/pdpmCalc";
-import { useLocalStorage } from "./hooks/useLocalStorage";
+import { PDPM, DEFAULT_NON_CM, RATE_OVERRIDE_KEY } from "./data/pdpmData";
+import { todayISO } from "./utils/pdpmCalc";
+import { useD1SyncedRows } from "./hooks/useD1SyncedRows";
 import "./styles.css";
 
 function loadPdpmWithOverrides() {
@@ -31,7 +31,7 @@ function loadPdpmWithOverrides() {
 export default function App() {
   const defaultPdpm = useMemo(() => ({ ...structuredClone(PDPM), nonCM: { ...DEFAULT_NON_CM } }), []);
   const [pdpm, setPdpm] = useState(loadPdpmWithOverrides);
-  const [rows, setRows] = useLocalStorage(STORAGE_KEY, [createDefaultRow(pdpm)]);
+  const { rows, setRows, syncStatus } = useD1SyncedRows(pdpm);
   const [activeTab, setActiveTab] = useState("residents");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [search, setSearch] = useState("");
@@ -44,7 +44,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header syncStatus={syncStatus} />
       <main className="wrap">
         <Tabs activeTab={activeTab} onChange={setActiveTab} />
 
