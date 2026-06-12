@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "npm run build && wrangler deploy",
+    "d1:create": "wrangler d1 create pdpm_ltc_tracker",
+    "d1:migrate:local": "wrangler d1 migrations apply pdpm_ltc_tracker --local",
+    "d1:migrate:remote": "wrangler d1 migrations apply pdpm_ltc_tracker --remote"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
@@ -14,5 +19,8 @@
     "react": "latest",
     "react-dom": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@cloudflare/workers-types": "latest",
+    "wrangler": "latest"
+  }
 }
