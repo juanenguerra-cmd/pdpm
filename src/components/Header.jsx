@@ -1,25 +1,22 @@
 export function Header({ syncStatus = 'Loading...' }) {
-  const lowerStatus = String(syncStatus).toLowerCase();
-  const isSynced = lowerStatus.includes('sync') || lowerStatus.includes('saved') || lowerStatus.includes('ready');
+  const status = String(syncStatus || 'Ready');
 
   return (
-    <header className="appHeader">
-      <div className="brandBlock">
-        <div className="brandMark">PD</div>
+    <header className="topbar">
+      <div className="topbarBrand">
+        <div className="topbarLogo">PD</div>
         <div>
-          <div className="eyebrow">FY2026 PDPM / LTC Revenue Intelligence</div>
-          <h1>PDPM Long-Term Care Tracker</h1>
-          <p className="headerSubtitle">Resident-level HIPPS, CMI, VPD, NTA, and daily rate tracking with Cloudflare D1 readiness.</p>
+          <h1>PDPM LTC Tracker</h1>
+          <span>FY 2026</span>
         </div>
       </div>
 
-      <div className="headerActions">
-        <span className="statusPill">FY2026</span>
-        <span className="statusPill">Workers + D1</span>
-        <span className={`syncPill ${isSynced ? 'ok' : ''}`}>
-          <span className="syncDot" />
-          {syncStatus}
-        </span>
+      <div className="topbarActions">
+        <button type="button" className="ghostBtn">⇩ Export CSV</button>
+        <button type="button" className="ghostBtn">▣ Export PDF</button>
+        <button type="button" className="ghostBtn">⇧ Import CSV</button>
+        <button type="button" className="outlineBtn">⚙ Settings</button>
+        <span className="syncPill"><span className="syncDot" />{status}</span>
       </div>
     </header>
   );
