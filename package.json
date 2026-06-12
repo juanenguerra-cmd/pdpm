@@ -14,13 +14,13 @@
     "d1:migrate:remote": "wrangler d1 migrations apply pdpm_ltc_tracker --remote"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "@vitejs/plugin-react": "5.0.4",
+    "vite": "6.2.3",
+    "react": "19.0.1",
+    "react-dom": "19.0.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "latest",
-    "wrangler": "latest"
+    "@cloudflare/workers-types": "4.20260610.1",
+    "wrangler": "4.20.5"
   }
 }
